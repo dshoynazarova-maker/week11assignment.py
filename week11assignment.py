@@ -22,7 +22,7 @@ def process_redemptions(players_db, prize_catalog, queue):
         try:
             cost = redeem_prize(players_db, prize_catalog, player_id, item, qty)
             tickets_spent += cost
-        except Exception as e:
+        except (KeyError,ValueError) as e:
             print(f"Redemption Error for {player_id}: {e}")
             failed_redemptions += 1
    new_dict['ticket_spent'] = tickets_spent
@@ -50,3 +50,4 @@ queue = [
 ]
 print(process_redemptions(players, prizes, queue))
  
+
